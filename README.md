@@ -1,51 +1,35 @@
-# UAS
-UAS Pemrograman Web 2 2021
+# UAS - 06TPLM001 - KELOMPOK 5 - 181011402940 - Raden Wirawan Kukuh Pambudi
+Repository Untuk Jawaban UAS Mata Kuliah Pemrograman Web 2 Pada Kelas 06TPLM001
 
-Pada File koneksi.php digunakan fungsi mysqli_connect($hostName, $DbUsername, $DbPassword, $DbName) yaitu untuk menghubungkan aplikasi dengan database.
+Aplikasi ini merupakan aplikasi pendataan pemesanan makanan berbasis web yang dikembangkan dengan menggunakan beberapa bahasa, yakni html, css, PHP, serta JavaScript.
+Adapun tujuan pembuatan aplikasi ini ialah sebagai pemenuh kewajiban akhir mahasiswa terhadap aktivitas Ujian Akhir Semester Genap 2020 / 2021.
 
-Pada File validateUser terdapat:
-session_start() untuk mengawali sebuah aktivitas session.
-kemudian $_POST[..] untuk memanggil data yang telah diinputkan pada halaman form.
-lalu ada $_SESSION[..] untuk membuat sebuah session pada variable data tertentu.
+Operasi yang diterapkan pada web ini merupakan operasi dasar yang mana pada umumnya diterapkan pada hampir seluruh web yang berada di jejaring internet, yakni CRUD (Create, Read, Update, Delete), adapun ketentuan yang digunakan dalam pembuatan web ini ialah ketentuan yang berdasar daripada soal UAS yang telah diberikan oleh bapak Sonasa Rinusantoro S.Kom., M.A. 
 
-Pada File index.php terdapat code :
-if(isset($_GET ... )
-yaitu untuk mengambil data dari sebuah form dapat berupa text field, combobox maupun select option.
+Kelompok 5 Kelas 06TPLM001 merupakan kelompok yang ditugaskan dalam melakukan pembuatan dan peletakkan web pemesanan makanan pada sebuah hosting (000WebHost), web pemesanan makanan yang dibuat oleh kelompok 5 terdiri dari 11 file bereksistensi PHP, adapun file-file tersebut adalah sebagai berikut:
 
-Pada File AddOrderQuery yaitu 
-        $query = "INSERT INTO tbl_datapesanan SET  jenisRestoran='$jenisRestoran' , makanan='$makanan' , harga='$harga' , alamatPemesan='$alamat' , namaPemesan='$nama' ,                   telpPemesan='$nomorHP' , emailPemesan='$email'";
-		    @$sql .= mysqli_query($connect, "ALTER TABLE tbl_datapesanan DROP nmrPesanan");
-	      @$sql .= mysqli_query($connect, "ALTER TABLE tbl_datapesanan ADD nmrPesanan INT NOT NULL AUTO_INCREMENT PRIMARY KEY FIRST");
-	      mysqli_query($connect , $query);
-        
-Digunakannya INSERT INTO... SET... untuk proses add / tambah data masuk ke dalam table.
+1.index.php
+2.koneksi.php
+3.validateUser.php
+4.InputOrderPage.php
+5.ShowOrderPage.php
+6.EditOrderPage.php
+7.AddOrderQuery.php
+8.EditOrderQuery.php
+9.DeleteOrderQuery.php
+10.PreviewDocument.php
+11.logout.php
 
-Pada File EditOrderQuery yaitu 
-    $query = "UPDATE tbl_datapesanan SET jenisRestoran='$restoranLama' , makanan='$makananLama' , harga='$hargaLama' , alamatPemesan='$alamat' , namaPemesan='$nama' ,                 telpPemesan='$nomorHP' , emailPemesan='$email' WHERE nmrPesanan='$nmrPesanan'";
-		@$sql .= mysqli_query($connect, "ALTER TABLE tbl_datapesanan DROP nmrPesanan");
-		@$sql .= mysqli_query($connect, "ALTER TABLE tbl_datapesanan ADD nmrPesanan INT NOT NULL AUTO_INCREMENT PRIMARY KEY FIRST");
-		mysqli_query($connect , $query);
+Adapun fungsi dari masing-masing file PHP tersebut ialah sebagai berikut:
 
-Digunakannya UPDATE ... SET... untuk mengupdate data tertentu yang dipilih dari sebuah table di database.
-Dan terdapat juga code:
-                            $nmrPesanan = $_GET['nmrPesanan'];
-                            $select = "SELECT * FROM tbl_datapesanan WHERE nmrPesanan='$nmrPesanan'";
-                            $getData = mysqli_query($connect,$select); /* Mengambil Data Dari Database Menggunakan PHP */
-                            while($a = mysqli_fetch_array($getData))
-SELECT * FROM ... berfungsi untuk mengambil data pada sebuah table database.
-lalu ada mysqli_fetch_array yaitu untuk mengambil data yang berupa tumbukan data pada sebuah table yang diinginkan.
+1.File index.php merupakan halaman pertama yang akan dibaca oleh listing dan dijumpai oleh seorang user ketika ia melakukan akses terhadap suatu web, adapun bagian lain yang tertera pada halaman index ialah form login yang dipergunakan oleh pengunjung sehingga dapat masuk ke dalam sistem suatu web yang ia kunjungi.
 
-Kemudian Pada File DeleteOrderQuery yaitu
+2.File koneksi.php merupakan file yang digunakan agar web dapat terhubung dengan database sehingga dapat melakukan operasi data dasar yakni CRUD, adapun beberapa komponen yang terdapat pada file ini di antaranya adalah nama host, nama database, username database, serta password database.
 
-  $query = mysqli_query($connect, "DELETE FROM tbl_datapesanan WHERE nmrPesanan='". $_GET["nmrPesanan"] . "'");
-	@$sql .= mysqli_query($connect, "ALTER TABLE tbl_datapesanan DROP nmrPesanan");
-	@$sql .= mysqli_query($connect, "ALTER TABLE tbl_datapesanan ADD nmrPesanan INT NOT NULL AUTO_INCREMENT PRIMARY KEY FIRST");
-  mysqli_multi_query($connect , $query);
-  
-Digunakannya DELETE FROM ... untuk menghapus data tertentu yang ada pada table database. 
-Dan ALTER TABLE ... DROP untuk menghilangkan record pada field data tertentu di table database.
-Lalu adanya ALTER TABLE ... ADD ... untuk menambahkan record field pada field data tertentu di table database.
+3.File validateUser merupakan file yang digunakan untuk mengenali pengunjung yang dapat dan mencoba untuk melakukan akses terhadap web pemesanan makanan, validasi user atau pengunjung dilakukan dengan mencocokan input username dan password milik pengung dengan username dan password yang telah tersimpan pada database, tepatnya pada tabel login, apabila terdapat kecocokan sempurna antara username dan password yang diinputkan oleh user dengan username dan password yang tersimpan pada database maka user tersebut diizinkan untuk masuk dan melakukan akses terhadap web pemesanan makanan, bila mana tidak ditemui kecocokan maka akan ditampilkan sebuah notifikasi yang memberikan peringatan bahwa username dan password yang dimasukkan salah.
 
-Pada File logout.php terdapat session_destroy(); untuk mengakhiri session pada aplikasi.
+4.File InputOrderPage.php merupakan file yang digunakan untuk menampilkan halaman input data pemesanan makanan ketika seorang user berhasil melakukan aktivitas login, adapun komponen yang disajikan pada halaman ini ialah form input pemesanan makanan yang terdiri dari beberapa select box dan textfield yang dapat diisi bilamana didapati adanya suatu aktivitas pemesanan makanan, adapun data yang dapat dipilih pada form input pemesanan makanan ini terbagi menjadi 3 sesuai dengan jenis restoran yang telah ditentukan pada soal UAS, yakni Warteg Kharisma, Restoran Padang Sederhana, serta Soto Ayam Ndelik, masing-masing dari ketiga restoran tersebut tentunya memiliki ciri khas menu tersendiri yang dapat dipilih sesuai dengan pemesanan yang ada, harga yang akan ditampilkan bergantung kepada menu makanan apa yang dipilih, adapun daftar menu dan harga dari ketiga restoran tersebut adalah sebagai berikut:
 
-Pada PreviewDocument terdapat adanya date_default_timezone_set('Asia/Jakarta'); yang telah di definisikan untuk menggunakan fungsi tampilan jam sesuai dengan waktu di ASIA Jakarta.
+-Warteg Kharisma (Paket nasi tempe orek, kentang balado, oseng-oseng) = Rp 30.000.
+-Restoran Padang Sederhana (Paket nasi sate padang) = Rp 40.000.
+-Soto Ayam Ndelik (Paket Nasi Soto Ayam Plus Mendoan) = Rp 35.000.
